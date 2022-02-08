@@ -76,6 +76,14 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.6.2</version>
+                <configuration>
+                    <propertyFile>resources/liquibase/liquibase.properties</propertyFile>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
