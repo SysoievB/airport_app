@@ -1,28 +1,25 @@
 package com.application.airport_app.entities;
 
-import javax.persistence.Transient;
-import java.time.LocalDate;
-import java.time.Period;
+import lombok.Data;
 
-public class User {
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.util.Date;
 
-    private LocalDate dateOfBirth;
-    @Transient
-    private Integer age;//should be removed from the constructors
+@Entity
+@Data
+@Table(name = "users")
+public class User extends BaseEntity {
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
+    private String username;
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+    private String password;
 
-    public Integer getAge() {
-        return Period.between(this.dateOfBirth,LocalDate.now()).getYears();
-    }
+    private Date created;
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+    private Date updated;
+
+    private Date lastPasswordChangeDate;
+
+    private Account account;
 }
