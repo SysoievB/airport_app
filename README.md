@@ -1,13 +1,15 @@
 # airport_app
 JWT based spring security REST Api with DB & CRUD operations with such entities:
 
-User (id, username, password, created, updated, lastPasswordChangeDate, AccountStatus status)
+User (id, username, password, created, updated, lastPasswordChangeDate, Account account)
 
 Ticket (id, Flight flight price, purchaseTime)
 
 Flight(id, from, to)
 
-Customer (id, firstName, lastName, Set tickets, AccountStatus status)
+Account(id, AccountStatus status)
+
+Customer (id, firstName, lastName, Set tickets, Account account)
 
 enum AccountStatus {ACTIVE, DELETED, BANNED}
 
