@@ -9,7 +9,7 @@ Flight(id, from, to)
 
 Account(id, AccountStatus status)
 
-Customer (id, firstName, lastName, Set tickets, Account account)
+Customer (id, firstName, lastName, age, Set tickets, Account account)
 
 enum AccountStatus {ACTIVE, DELETED, BANNED}
 
