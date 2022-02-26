@@ -1,10 +1,17 @@
 package com.application.airport_app.entities;
 
-import javax.persistence.Transient;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Set;
 
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name="customers")
 public class Customer extends BaseEntity {
 
     private String firstName;
@@ -15,8 +22,10 @@ public class Customer extends BaseEntity {
     @Transient
     private Integer age;//should be removed from the constructors
 
+    @OneToMany
     private Set<Ticket> tickets;
 
+    @OneToOne
     private Account account;
 
 
