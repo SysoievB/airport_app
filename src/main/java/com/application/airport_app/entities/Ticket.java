@@ -19,10 +19,9 @@ public class Ticket extends BaseEntity {
 
     @OneToOne
     private Flight flight;
-
     private Integer price;
-
     private Date purchaseTime;
+
 
     @ManyToMany
     private Set<Flight> flights = new HashSet<>();
