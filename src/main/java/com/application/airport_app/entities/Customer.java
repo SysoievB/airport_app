@@ -28,20 +28,7 @@ public class Customer extends BaseEntity {
     @OneToOne
     private Account account;
 
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public Integer getAge() {
         return Period.between(this.dateOfBirth, LocalDate.now()).getYears();
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 }
