@@ -3,9 +3,7 @@ JWT based spring security REST Api with DB & CRUD operations with such entities:
 
 User (id, username, password, created, updated, lastPasswordChangeDate, Account account)
 
-Ticket (id, Flight flight, price, purchaseTime)
-
-Flight(id, from, to)
+Ticket (id, price, purchaseTime)
 
 Account(id, AccountStatus status)
 
