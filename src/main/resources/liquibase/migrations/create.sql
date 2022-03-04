@@ -1,3 +1,6 @@
+--liquibase formatted sql
+--changeset sysoiev:1
+
 create table customers
 (
     id            bigint not null auto_increment,
