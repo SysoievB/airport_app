@@ -1,5 +1,7 @@
 package com.application.airport_app.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Table(name="customers")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Customer extends BaseEntity {
 
     @Column(name="first_name")
@@ -26,7 +29,11 @@ public class Customer extends BaseEntity {
     @Transient
     private Integer age;//should be removed from the constructors
 
-    @OneToMany
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "customers_tickets", joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "ticket_id"))
+    @OrderBy(value = "id ASC")
     private Set<Ticket> tickets;
 
     public Integer getAge() {
