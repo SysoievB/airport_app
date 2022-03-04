@@ -1,10 +1,11 @@
 package com.application.airport_app.entities;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -19,18 +20,7 @@ public class User extends BaseEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "created")
-    private Date created;
-
-    @Column(name = "updated")
-    private Date updated;
-
+    @LastModifiedDate
     @Column(name = "last_password_change_date")
     private Date lastPasswordChangeDate;
-
-    @OneToOne
-    private Account account;
-
-    public User(){
-    }
 }
