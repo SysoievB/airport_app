@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
         user.setUpdated(getCurrentDate());
 
         List<Role> userRoles = user.getRoles().stream()
-                .map(role->roleRepository.findRoleByName(role.getName()))
+                .map(role -> roleRepository.findRoleByName(role.getName()))
                 .collect(Collectors.toCollection(ArrayList::new));
 
         user.setRoles(userRoles);
@@ -65,8 +65,8 @@ public class UserServiceImpl implements UserService {
 
         if (updatedUser.getRoles() != null) {
             List<Role> userRoles = updatedUser.getRoles().stream()
-                     .map(role->roleRepository.findRoleByName(role.getName()))
-                     .collect(Collectors.toList());
+                    .map(role -> roleRepository.findRoleByName(role.getName()))
+                    .collect(Collectors.toList());
 
             user.setRoles(userRoles);
         }
@@ -106,9 +106,24 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Override//todo:write this
+    @Override
     public User register(User user) {
-        return null;
+        Role roleUser = roleRepository.findRoleByName("ROLE_USER");
+        List<Role> userRoles = new ArrayList<>();
+        userRoles.add(roleUser);
+
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(userRoles);
+        user.setStatus(AccountStatus.NOT_ACTIVE);
+
+        user.setCreated(getCurrentDate());
+        user.setUpdated(getCurrentDate());
+
+        User registeredUser = userRepository.save(user);
+
+        log.info("IN register - user: {} successfully registered", registeredUser);
+
+        return registeredUser;
     }
 
     @Override

@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
         if (updatedCustomer.getAge() != null) customer.setAge(updatedCustomer.getAge());
 
         if (updatedCustomer.getTickets() != null) {
-            Set<Ticket>  customerTickets = updatedCustomer.getTickets().stream()
+            Set<Ticket> customerTickets = updatedCustomer.getTickets().stream()
                     .map(ticket -> ticketRepository.findById(ticket.getId()).get())
                     .collect(Collectors.toSet());
 
@@ -88,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
                         () -> new NoSuchElementException("Customer not found by this id :: " + id)
                 );
 
-        log.info("IN getById - customer: {} found by id: {}", customer,id);
+        log.info("IN getById - customer: {} found by id: {}", customer, id);
 
         return customer;
     }
