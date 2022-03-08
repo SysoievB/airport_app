@@ -78,5 +78,4 @@ public class AuthenticationRestControllerV1 {
         response.put("message", "User registered successfully");
         return ResponseEntity.ok(response);
     }
-
 }
