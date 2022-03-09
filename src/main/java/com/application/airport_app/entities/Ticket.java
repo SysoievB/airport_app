@@ -19,6 +19,12 @@ public class Ticket extends BaseEntity {
     @Column(name = "price")
     private Double price;
 
+    @Column(name="departure")
+    private String departure;
+
+    @Column(name="arrival")
+    private String arrival;
+
     @Column(name = "purchase_time")
     private Date purchaseTime;
 

@@ -41,6 +41,10 @@ public class TicketServiceImpl implements TicketService {
 
         if (updateTicket.getPrice() != null) ticket.setPrice(updateTicket.getPrice());
 
+        if (updateTicket.getDeparture() != null) ticket.setDeparture(updateTicket.getDeparture());
+
+        if (updateTicket.getArrival() != null) ticket.setArrival(updateTicket.getArrival());
+
         if (updateTicket.getStatus() != null) ticket.setStatus(updateTicket.getStatus());
 
         if (updateTicket.getPurchaseTime() != null) ticket.setPurchaseTime(updateTicket.getPurchaseTime());

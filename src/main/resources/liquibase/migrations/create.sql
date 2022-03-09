@@ -36,6 +36,8 @@ create table tickets
     updated       datetime(6),
     price         double precision,
     purchase_time datetime(6),
+    arrival       varchar(255),
+    departure     varchar(255),
     primary key (id)
 ) engine = InnoDB;
 create table user_roles
@@ -54,6 +56,7 @@ create table users
     username                  varchar(255),
     primary key (id)
 ) engine = InnoDB;
+
 alter table customers_tickets
     add constraint FK7l61od5fjsqabsoo4i2uh2kud foreign key (ticket_id) references tickets (id);
 alter table customers_tickets
