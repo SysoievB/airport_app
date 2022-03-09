@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenProvider {
@@ -95,13 +96,9 @@ public class JwtTokenProvider {
     }
 
     private List<String> getRoleNames(List<Role> userRoles) {
-        List<String> result = new ArrayList<>();
 
-        userRoles.forEach(role -> {
-            result.add(role.getName());
-        });
-
-        return result;
+        return userRoles.stream()
+                .map(Role::getName)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
-
 }
