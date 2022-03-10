@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 public class TicketDto {
 
     private Long id;
-    private Double price;
+    private String departure;
 
     public static TicketDto fromTicket(Ticket ticket){
 
-        return new TicketDto(ticket.getId(),ticket.getPrice());
+        return new TicketDto(ticket.getId(),ticket.getDeparture());
     }
 
     public static List<TicketDto> toTicketDto(List<Ticket> tickets) {
