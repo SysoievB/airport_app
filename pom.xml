@@ -16,6 +16,8 @@
     <properties>
         <java.version>11</java.version>
         <jsonwebtoken.version>0.8.0</jsonwebtoken.version>
+        <google.collections.version>1.0-rc1</google.collections.version>
+        <guava.version>30.1-jre</guava.version>
     </properties>
     <dependencies>
         <dependency>
@@ -69,12 +71,17 @@
         <dependency>
             <groupId>com.google.collections</groupId>
             <artifactId>google-collections</artifactId>
-            <version>1.0-rc1</version>
+            <version>${google.collections.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>30.1-jre</version>
+            <version>${guava.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

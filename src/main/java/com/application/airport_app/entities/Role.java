@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,4 +23,14 @@ public class Role extends BaseEntity {
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
+
+    public Role() {
+    }
+
+    public Role(Long id, AccountStatus status, String name) {
+        this.id = id;
+        this.status = status;
+        this.name = name;
+    }
+
 }

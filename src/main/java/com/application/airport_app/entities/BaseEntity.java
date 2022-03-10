@@ -13,17 +13,17 @@ public class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @CreatedDate
     @Column(name = "created")
-    private Date created;
+    protected Date created;
 
     @LastModifiedDate
     @Column(name = "updated")
-    private Date updated;
+    protected Date updated;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private AccountStatus status;
+    protected AccountStatus status;
 }
