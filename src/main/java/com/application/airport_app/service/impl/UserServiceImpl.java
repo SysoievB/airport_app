@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
         user.setUpdated(getCurrentDate());
 
         List<Role> userRoles = user.getRoles().stream()
-                .map(role -> roleRepository.findRoleByName(role.getName()))
+                .map(role -> roleRepository.findByName(role.getName()))
                 .collect(Collectors.toCollection(ArrayList::new));
 
         user.setRoles(userRoles);
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
 
         if (updatedUser.getRoles() != null) {
             List<Role> userRoles = updatedUser.getRoles().stream()
-                    .map(role -> roleRepository.findRoleByName(role.getName()))
+                    .map(role -> roleRepository.findByName(role.getName()))
                     .collect(Collectors.toList());
 
             user.setRoles(userRoles);
@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(User user) {
-        Role roleUser = roleRepository.findRoleByName("ROLE_USER");
+        Role roleUser = roleRepository.findByName("ROLE_USER");
         List<Role> userRoles = new ArrayList<>();
         userRoles.add(roleUser);
 
