@@ -25,6 +25,6 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> list() {
         log.info("IN RoleServiceImpl list");
 
-        return roleRepository.findAll(Sort.by(Sort.Direction.ASC));
+        return roleRepository.findAll();
     }
 }
