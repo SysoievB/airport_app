@@ -41,6 +41,7 @@ class RoleServiceImplTest {
                 new Role(1L, AccountStatus.ACTIVE, "ROLE_USER"),
                 new Role(2L, AccountStatus.ACTIVE, "USER_ADMIN")
         ));
+
         given(underTestRoleRepository.findAll()).willReturn(roles);
 
         // When
