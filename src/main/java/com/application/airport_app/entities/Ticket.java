@@ -19,10 +19,10 @@ public class Ticket extends BaseEntity {
     @Column(name = "price")
     private Double price;
 
-    @Column(name="departure")
+    @Column(name = "departure")
     private String departure;
 
-    @Column(name="arrival")
+    @Column(name = "arrival")
     private String arrival;
 
     @Column(name = "purchase_time")
@@ -31,4 +31,15 @@ public class Ticket extends BaseEntity {
     @JsonIgnore
     @ManyToMany(mappedBy = "tickets")
     private List<Customer> customers;
+
+    public Ticket(Long id, String departure, String arrival) {
+        this.id = id;
+        this.departure = departure;
+        this.arrival = arrival;
+    }
+
+    public Ticket(String departure, String arrival) {
+        this.departure = departure;
+        this.arrival = arrival;
+    }
 }
