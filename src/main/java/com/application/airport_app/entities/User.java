@@ -31,4 +31,15 @@ public class User extends BaseEntity {
     )
     @OrderBy(value = "id ASC")
     private List<Role> roles;
+
+    public User() {
+    }
+
+    public User(Long id) {
+        this.id = id;
+    }
+
+    public User(List<Role> roles) {
+        this.roles = roles;
+    }
 }

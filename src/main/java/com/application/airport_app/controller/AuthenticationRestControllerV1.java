@@ -55,8 +55,7 @@ public class AuthenticationRestControllerV1 {
             response.put("token", token);
 
             return ResponseEntity.ok(response);
-        }
-        catch (AuthenticationException e ) {
+        } catch (AuthenticationException e) {
             Map<Object, Object> response = new HashMap<>();
             response.put("message", e.getMessage());
             return ResponseEntity.ok(response);
@@ -68,7 +67,7 @@ public class AuthenticationRestControllerV1 {
 
         User userExists = userService.findByUsername(userDto.getUsername());
 
-        if (userExists != null ) {
+        if (userExists != null) {
             throw new BadCredentialsException("User with username: " + userDto.getUsername() + " already exists");
         }
 
