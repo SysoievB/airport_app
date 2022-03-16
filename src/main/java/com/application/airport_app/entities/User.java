@@ -39,7 +39,25 @@ public class User extends BaseEntity {
         this.id = id;
     }
 
+    public User(Long id, List<Role> roles) {
+        this.id = id;
+        this.roles = roles;
+    }
+
+    public User(Long id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+
     public User(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public User(String username, String password, AccountStatus status, Date lastPasswordChangeDate, List<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.status = status;
+        this.lastPasswordChangeDate = lastPasswordChangeDate;
         this.roles = roles;
     }
 }

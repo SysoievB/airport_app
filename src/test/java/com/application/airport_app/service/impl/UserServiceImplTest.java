@@ -70,8 +70,28 @@ class UserServiceImplTest {
     @Test
     void itShouldUpdateUser() {
         // Given
+        Role userRole = new Role(1L, AccountStatus.ACTIVE, "ROLE_USER");
+        List<Role> roleList = List.of(userRole);
+        User user = new User(1L, roleList);
+        Date timeUpdatedBefore = user.getUpdated();
+
+        User updatedUser = new User("updated", "updated", AccountStatus.NOT_ACTIVE, timeUpdatedBefore, roleList);
+
         // When
+        when(roleRepository.findByName("ROLE_USER")).thenReturn(userRole);
+        when(underTestUserRepository.findById(1L)).thenReturn(Optional.of(user));
+        when(bCryptPasswordEncoder.encode(anyString())).thenReturn(updatedUser.getPassword());
+
+        underTestUserService.update(user.getId(), updatedUser);
+
         // Then
+        assertEquals(updatedUser.getUsername(), user.getUsername());
+        assertEquals(updatedUser.getPassword(), user.getPassword());
+        assertEquals(AccountStatus.NOT_ACTIVE, user.getStatus());
+        assertNotEquals(timeUpdatedBefore, user.getUpdated());
+        assertEquals(updatedUser.getRoles().size(), user.getRoles().size());
+
+        verify(underTestUserRepository, atLeastOnce()).save(user);
     }
 
     @Test
@@ -114,28 +134,81 @@ class UserServiceImplTest {
     @Test
     void itShouldListUsers() {
         // Given
+        var users = List.of(
+                new User(1L),
+                new User(2L)
+        );
+
         // When
+        when(underTestUserRepository.findAll()).thenReturn(users);
+
+        List<User> actualResult = underTestUserService.list();
+
         // Then
+        assertEquals(users.size(), actualResult.size());
+
+        verify(underTestUserRepository, atLeastOnce()).findAll();
     }
 
     @Test
-    void itShouldRegister() {
+    void itShouldRegisterUser() {
         // Given
+        Role userRole = new Role(1L, AccountStatus.ACTIVE, "ROLE_USER");
+        List<Role> roleList = List.of(userRole);
+        User user = new User(roleList);
+
         // When
+        when(roleRepository.findByName("ROLE_USER")).thenReturn(userRole);
+        when(bCryptPasswordEncoder.encode(anyString())).thenReturn(user.getPassword());
+        when(underTestUserRepository.save(user)).thenReturn(user);
+
+        underTestUserService.register(user);
+
         // Then
+        assertEquals(user.getStatus(), AccountStatus.NOT_ACTIVE);
+        assertNotNull(user.getCreated());
+        assertNotNull(user.getUpdated());
+        assertTrue(user.getRoles().contains(userRole));
+
+        verify(underTestUserRepository, atLeastOnce()).save(user);
     }
 
     @Test
-    void itShouldFindByUsername() {
+    void itShouldFindUserByUsername() {
         // Given
+        String userName = "userName";
+        User user = new User(1L, userName);
+
         // When
+        when(underTestUserRepository.findByUsername(userName)).thenReturn(Optional.of(user));
+
+        User actualUser = underTestUserService.findByUsername(userName);
+
         // Then
+        Long expectedId = 1L;
+        assertEquals(expectedId, actualUser.getId());
+
+        verify(underTestUserRepository, atLeastOnce()).findByUsername(anyString());
     }
 
     @Test
-    void itShouldActivate() {
+    void itShouldActivateUser() {
         // Given
+        User user = new User(1L);
+
+        Date timeUpdatedBefore = user.getUpdated();
+        Date timeCreatedBefore = user.getCreated();
+
         // When
+        underTestUserService.activate(user);
+
         // Then
+        assertEquals(user.getStatus(), AccountStatus.ACTIVE);
+        assertNotEquals(timeUpdatedBefore, user.getUpdated());
+        assertEquals(timeCreatedBefore, user.getCreated());
+
+        verify(underTestUserRepository, atLeastOnce()).save(user);
+
+
     }
 }
