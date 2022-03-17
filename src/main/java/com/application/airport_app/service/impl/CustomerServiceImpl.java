@@ -54,8 +54,6 @@ public class CustomerServiceImpl implements CustomerService {
 
         if (updatedCustomer.getStatus() != null) customer.setStatus(updatedCustomer.getStatus());
 
-        if (updatedCustomer.getAge() != null) customer.setAge(updatedCustomer.getAge());
-
         if (updatedCustomer.getTickets() != null) {
             Set<Ticket> customerTickets = updatedCustomer.getTickets().stream()
                     .map(ticket -> ticketRepository.findById(ticket.getId()).get())
