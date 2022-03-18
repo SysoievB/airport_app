@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AuthenticationRestControllerV1Test {
 
     @BeforeEach
-    void setUp() {
+    void init() {
     }
 
     @Test
