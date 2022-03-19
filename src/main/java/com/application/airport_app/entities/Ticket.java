@@ -42,4 +42,8 @@ public class Ticket extends BaseEntity {
         this.departure = departure;
         this.arrival = arrival;
     }
+
+    public Ticket(Long id) {
+        this.id = id;
+    }
 }
