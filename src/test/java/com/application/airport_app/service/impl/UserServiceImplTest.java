@@ -208,7 +208,5 @@ class UserServiceImplTest {
         assertEquals(timeCreatedBefore, user.getCreated());
 
         verify(underTestUserRepository, atLeastOnce()).save(user);
-
-
     }
 }

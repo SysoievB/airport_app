@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -75,11 +76,13 @@ class TicketRestControllerV1Test {
 
         var firstTicket = tickets.stream()
                 .filter(t -> t.getId() == 1L)
-                .findFirst().get();
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
 
         var secondTicket = tickets.stream()
                 .filter(t -> t.getId() == 2L)
-                .findFirst().get();
+                .findFirst()
+                .orElseThrow(NoSuchElementException::new);
 
         // When
         when(underTestTicketService.list()).thenReturn(tickets);
@@ -164,7 +167,7 @@ class TicketRestControllerV1Test {
     }
 
     @Test
-    public void deleteFail() {
+    public void itShouldFailWhenDeleteTicket() {
         // Given
         Long id = 1L;
 
